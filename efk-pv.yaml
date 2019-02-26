@@ -1,0 +1,31 @@
+kind: PersistentVolume
+apiVersion: v1
+metadata:
+  name: data
+  labels:
+    app: elasticsearch
+  namespace: kube-logging
+spec:
+  storageClassName: manual
+  capacity:
+    storage: 1Gi
+  accessModes:
+    - ReadWriteOnce
+  hostPath:
+    path: "/data/EFK/data/"
+---
+kind: PersistentVolumeClaim
+apiVersion: v1
+metadata:
+  name: data
+  labels:
+    app: elasticsearch
+  namespace: kube-logging
+spec:
+  storageClassName: manual
+  accessModes:
+    - ReadWriteOnce
+  resources:
+    requests:
+      storage: 1Gi
+
